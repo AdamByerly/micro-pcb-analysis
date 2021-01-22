@@ -100,9 +100,7 @@ if __name__ == "__main__":
     p.add_argument("--end_step", default=500000, type=int)
     p.add_argument("--lr_decay_steps", default=2200, type=int)
     p.add_argument("--weights_file", default=None)
-    p.add_argument("--data_dir", default=r"C:\Users\abyerly"
-        + r"\OneDrive - Brunel University London"
-        + r"\micro_pcb_dataset\tfrecords\299")
+    p.add_argument("--data_dir", default="data")
     p.add_argument("--log_dir", default="logs")
     p.add_argument("--batch_size", default=2, type=int)
     p.add_argument("--profile_batch_start", default=None, type=int)
@@ -110,7 +108,6 @@ if __name__ == "__main__":
     p.add_argument("--include_top5", default=False, type=bool)
     p.add_argument("--image_size", default=299, type=int)
     p.add_argument("--trials", default=1, type=int)
-    p.add_argument("--attempt_tpu", default=False, type=bool)
     p.add_argument("--train_rotations_to_use", default=[1, 2, 3, 4, 5])
     p.add_argument("--train_perspectives_x_to_use", default=[1, 2, 3, 4, 5])
     p.add_argument("--train_perspectives_y_to_use", default=[1, 2, 3, 4, 5])
@@ -127,11 +124,18 @@ if __name__ == "__main__":
         else:
             rn = a.run_name + ("" if a.trials <= 1 else "_" + str(i))
 
-        go(a.model_no, a.capsule_configuration, a.input_pipeline, rn,
-           a.end_step, a.lr_decay_steps, a.weights_file, a.data_dir,
-           a.log_dir, a.batch_size, a.profile_batch_start, a.profile_batch_end,
-           a.include_top5, a.image_size,
-           a.train_rotations_to_use, a.train_perspectives_x_to_use,
-           a.train_perspectives_y_to_use, a.test_rotations_to_use,
-           a.test_perspectives_x_to_use, a.test_perspectives_y_to_use,
-           a.generate_missing_rotations, a.generate_missing_perspectives)
+        go(model_no=a.model_no, capsule_configuration=a.capsule_configuration,
+           input_pipeline=a.input_pipeline, run_name=rn, end_step=a.end_step,
+           lr_decay_steps=a.lr_decay_steps, weights_file=a.weights_file,
+           data_dir=a.data_dir, log_dir=a.log_dir, batch_size=a.batch_size,
+           profile_batch_start=a.profile_batch_start,
+           profile_batch_end=a.profile_batch_end, include_top5=a.include_top5,
+           image_size=a.image_size,
+           train_rotations_to_use=a.train_rotations_to_use,
+           train_perspectives_x_to_use=a.train_perspectives_x_to_use,
+           train_perspectives_y_to_use=a.train_perspectives_y_to_use,
+           test_rotations_to_use=a.test_rotations_to_use,
+           test_perspectives_x_to_use=a.test_perspectives_x_to_use,
+           test_perspectives_y_to_use=a.test_perspectives_y_to_use,
+           generate_missing_rotations=a.generate_missing_rotations,
+           generate_missing_perspectives=a.generate_missing_perspectives)
