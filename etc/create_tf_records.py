@@ -192,13 +192,9 @@ def process_dataset(name, output_directory, directory):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
-    p.add_argument("--train_directory", default=r"C:\Users\abyerly"
-        + r"\OneDrive - Brunel University London\micro_pcb_dataset\train_coded")
-    p.add_argument("--test_directory", default=r"C:\Users\abyerly"
-        + r"\OneDrive - Brunel University London\micro_pcb_dataset\test_coded")
-    p.add_argument("--output_directory", default=r"C:\Users\abyerly"
-        + r"\OneDrive - Brunel University London"
-        + r"\micro_pcb_dataset\tfrecords\299")
+    p.add_argument("--train_directory", default=r"train_coded")
+    p.add_argument("--test_directory", default=r"test_coded")
+    p.add_argument("--output_directory", default=r"tfrecords")
     a = p.parse_args()
 
     if not os.path.isdir(a.output_directory):
